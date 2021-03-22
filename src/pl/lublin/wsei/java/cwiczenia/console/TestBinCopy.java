@@ -2,44 +2,56 @@ package pl.lublin.wsei.java.cwiczenia.console;
 
 import java.io.*;
 
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.nio.file.Path;
+import java.nio.file.StandardCopyOption;
+
+
 public class TestBinCopy {
 
     public static void main(String[] args) throws IOException {
 
-        BufferedInputStream in = null;
-        BufferedOutputStream out = null;
-
+//        BufferedInputStream in = null;
+//        BufferedOutputStream out = null;
+//
         long startTime = System.nanoTime();
+//
+//        try {
+//            in = new BufferedInputStream(new FileInputStream("sample_1920×1280.tiff"));
+//            out = new BufferedOutputStream(new FileOutputStream("img_copy.tiff"));
+//
+//            int c;
+//
+//            while ((c = in.read()) != -1) {
+//                out.write(c);
+//            }
+//        }
+//        catch (IOException e){
+//            System.out.println("IOexception: " +e.getMessage());
+//            e.printStackTrace();
+//        }
+//        finally {
+//            if(in != null){
+//                in.close();
+//            }
+//            if(out != null){
+//                out.close();
+//            }
+//
+//        }
+//
+//        long endTime = System.nanoTime();
+//        long timeElapsed = endTime - startTime;
+//
+//        System.out.println("Czas wykonania w nanosekundach: "+ timeElapsed);
+//        System.out.println("Czas wykonania w nanosekundach: "+ timeElapsed/1000000);
 
-        try {
-            in = new BufferedInputStream(new FileInputStream("sample_1920×1280.tiff"));
-            out = new BufferedOutputStream(new FileOutputStream("img_copy.tiff"));
+        Path oryginal = Paths.get("sample_1920×1280.tiff");
+        Path kopia = Paths.get("img_copy.tiff54");
+        Files.copy(oryginal, kopia, StandardCopyOption.REPLACE_EXISTING);
 
-            int c;
-
-            while ((c = in.read()) != -1) {
-                out.write(c);
-            }
-        }
-        catch (IOException e){
-            System.out.println("IOexception: " +e.getMessage());
-            e.printStackTrace();
-        }
-        finally {
-            if(in != null){
-                in.close();
-            }
-            if(out != null){
-                out.close();
-            }
-
-        }
-
-        long endTime = System.nanoTime();
-        long timeElapsed = endTime - startTime;
-
-        System.out.println("Czas wykonania w nanosekundach: "+ timeElapsed);
-        System.out.println("Czas wykonania w nanosekundach: "+ timeElapsed/1000000);
+        System.out.println("Czas kopiowania: "+ (float)(System.nanoTime()-startTime)/1000000 + " ms");
     }
 }
 
