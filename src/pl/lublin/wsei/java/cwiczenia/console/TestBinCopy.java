@@ -34,6 +34,7 @@ public class TestBinCopy {
             if(out != null){
                 out.close();
             }
+
         }
 
         long endTime = System.nanoTime();
@@ -43,3 +44,4 @@ public class TestBinCopy {
         System.out.println("Czas wykonania w nanosekundach: "+ timeElapsed/1000000);
     }
 }
+
